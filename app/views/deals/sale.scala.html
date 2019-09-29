@@ -1,0 +1,17 @@
+@(deals : List[Deal])
+
+@layout("Comprar - Escolha uma Oferta"){
+    <h1>Comprar - Escolha uma oferta</h1>
+    <ul class="list-group">
+    @for(deal <- deals){
+        <li class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">@deal.title</h5>
+            </div>
+            <p class="mb-1">@deal.text</p>
+            <small><a class="btn btn-primary" href="@routes.BuyOptionsController.buyOptionsForSale(deal.id)">Ver Oferta</a></small>
+        </li>
+    }
+    </ul>
+
+}

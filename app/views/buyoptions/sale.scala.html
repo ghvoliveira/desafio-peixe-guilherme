@@ -1,0 +1,24 @@
+@import models.BuyOption
+@(buyOptions: List[BuyOption])
+
+@layout("Comprar - Escolha o Produto"){
+    <h1>Comprar - Escolha o Produto</h1>
+    <ul class="list-group">
+    @for(buyOption <-buyOptions){
+        <li class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">@buyOption.title</h5>
+                <small>@buyOption.quantityCupom cupons disponíveis</small>
+            </div>
+            <p class="mb-1">R$ @buyOption.formatDecimal(buyOption.salePrice)</p>
+            @if(buyOption.quantityCupom == 0){
+                <small><a class="btn btn-danger" href="#">Esgotado</a></small>
+            }
+            @if(buyOption.quantityCupom > 0){
+                <small><a class="btn btn-success" href="@routes.BuyOptionsController.sell(buyOption.id)">Comprar</a></small>
+            }
+        </li>
+    }
+    </ul>
+
+}

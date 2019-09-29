@@ -1,0 +1,29 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+
+GET    /deals                       controllers.DealsController.index()
+GET    /deals/create                controllers.DealsController.create()
+GET    /deals/:id                   controllers.DealsController.show(id: Integer)
+GET    /deals/edit/:id              controllers.DealsController.edit(id: Integer)
+POST   /deals/create                controllers.DealsController.save()
+POST   /deals/edit                  controllers.DealsController.save()
+GET    /deals/delete/:id            controllers.DealsController.destroy(id: Integer)
+
+GET    /deals/buyoptions/create/:id controllers.BuyOptionsController.create(id: Integer)
+GET    /deals/buyoptions/edit/:id   controllers.BuyOptionsController.edit(id: Integer)
+POST   /deals/buyoptions/create     controllers.BuyOptionsController.save()
+POST   /deals/buyoptions/edit       controllers.BuyOptionsController.save()
+GET    /deals/buyoptions/:id        controllers.BuyOptionsController.destroy(id: Integer)
+
+GET    /sales                       controllers.DealsController.dealsForSale()
+GET    /sales/buyoption/:id         controllers.BuyOptionsController.sell(id: Integer)
+GET    /sales/deal/:deal            controllers.DealsController.searchByUrl(deal: String)
+GET    /sales/:deal                 controllers.BuyOptionsController.buyOptionsForSale(deal: Integer)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

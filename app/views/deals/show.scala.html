@@ -1,0 +1,46 @@
+@(deal : Deal)
+@layout(deal.title){
+    <h2>Descrição da Oferta</h2>
+            <ul class="list-group">
+                <li class="list-group-item"><b>Título: </b>@deal.title</li>
+                <li class="list-group-item"><b>Texto: </b>@deal.text</li>
+                <li class="list-group-item"><b>Data de Criação: </b>@deal.formatDate(deal.createDate)</li>
+                <li class="list-group-item"><b>Data de Publicação: </b>@deal.formatDate(deal.publishDate)</li>
+                <li class="list-group-item"><b>Data de Validade: </b>@deal.formatDate(deal.endDate)</li>
+                <li class="list-group-item"><b>Tipo: </b>@deal.getTypeDescription(deal.typeDeal)</li>
+                <li class="list-group-item"><b>Total de Cupons Vendidos: </b>@deal.totalSold</li>
+                <li class="list-group-item"><b>URL venda: </b><a href="@routes.DealsController.searchByUrl(deal.url)">sales/deal/@deal.url</a></li>
+            </ul>
+
+    <h3>Opções de Compra</h3>
+            <a class="btn btn-primary" href="@routes.BuyOptionsController.create(deal.id)">Adicionar Opção de Compra</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Opção de Compra</th>
+                <th scope="col">Início</th>
+                <th scope="col">Fim</th>
+                <th scope="col">Quantidade Disponível</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(buyOption <- deal.getBuyOptions){
+            <tr>
+                <th scope="row">@buyOption.title</th>
+                <td>@deal.formatDate(buyOption.startDate)</td>
+                <td>@deal.formatDate(buyOption.endDate)</td>
+                <td>@buyOption.quantityCupom</td>
+                <td>
+                    <a class="btn btn-success" href="@routes.BuyOptionsController.edit(buyOption.id)">Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="@routes.BuyOptionsController.destroy(buyOption.id)">Excluir</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

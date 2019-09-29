@@ -1,0 +1,5 @@
+[debug] Copy resource mappings: 
+[debug] 	(C:\Users\myghv\Documents\desafio-peixe-guilherme\conf\application.conf,C:\Users\myghv\Documents\desafio-peixe-guilherme\target\scala-2.12\classes\application.conf)
+[debug] 	(C:\Users\myghv\Documents\desafio-peixe-guilherme\conf\logback.xml,C:\Users\myghv\Documents\desafio-peixe-guilherme\target\scala-2.12\classes\logback.xml)
+[debug] 	(C:\Users\myghv\Documents\desafio-peixe-guilherme\conf\routes,C:\Users\myghv\Documents\desafio-peixe-guilherme\target\scala-2.12\classes\routes)
+[debug] 	(C:\Users\myghv\Documents\desafio-peixe-guilherme\conf\evolutions\default\1.sql,C:\Users\myghv\Documents\desafio-peixe-guilherme\target\scala-2.12\classes\evolutions\default\1.sql)

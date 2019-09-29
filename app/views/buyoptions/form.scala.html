@@ -1,0 +1,27 @@
+@(buyOption : Form[BuyOption])(deal : Integer)
+@import helper._
+
+@layout("Formulário da Opção de Compra"){
+    <h1>Formulário da Opção de Compra</h1>
+    @helper.form(action=routes.BuyOptionsController.save()){
+        @helper.CSRF.formField
+        @helper.inputText(buyOption("title"),'_label->"Título",'class ->"form-control",'_showConstraints -> false,
+            'required -> "true", 'minlength -> "5")
+        @helper.inputText(buyOption("normalPrice"),'_label->"Preço de Venda Normal",'class ->"form-control",
+            '_showConstraints -> false, 'required -> "true",'type->"number",'min->"0",'step->"0.01")
+        @helper.inputText(buyOption("percentageDiscount"),'_label->"Percentual de Desconto",'class ->"form-control",
+            'type->"number",'min->"0",'max->"100",'step->"0.1",'_showConstraints -> false, 'required -> "true")
+        @helper.inputText(buyOption("quantityCupom"),'_label->"Quantidade Total de Cupons Disponíveis",
+            'class ->"form-control",'type->"number",'min->"0",'max->"100",'step->"1",'_showConstraints -> false,
+            'required -> "true")
+        @helper.inputDate(buyOption("startDate"),'_label->"Data de Entrada",'class ->"form-control",
+            '_showConstraints -> false, 'required -> "true")
+        @helper.inputDate(buyOption("endDate"),'_label->"Data de Saída",'class ->"form-control",
+            '_showConstraints -> false, 'required -> "true")
+        <button class="btn btn-success" type="submit"> Salvar </button>
+
+        @helper.inputText(buyOption("id"),'_label->"",'hidden ->"hidden")
+        <input type="text" name="deal.id" value="@deal" style="display:none">
+        <input type="text" name="salePrice" value="0" style="display:none">
+    }
+}

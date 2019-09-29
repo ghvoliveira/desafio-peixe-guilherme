@@ -1,0 +1,26 @@
+@(dealForm : Form[Deal])
+@import helper._
+
+@layout("Formulário da Oferta"){
+    <h1>Formulário da Oferta</h1>
+    @helper.form(action=routes.DealsController.save()){
+        @helper.CSRF.formField
+        @helper.inputText(dealForm("title"),'_label->"Título da Oferta",'class ->"form-control",
+            '_showConstraints -> false, 'required -> "true", 'minlength -> "5")
+        @helper.inputText(dealForm("text"),'_label->"Texto de Destaque",'class ->"form-control",
+            '_showConstraints -> false, 'required -> "true", 'minlength -> "10")
+        @helper.inputDate(dealForm("publishDate"),'_label->"Data de Publicação",'class ->"form-control",
+            '_showConstraints -> false, 'required -> "true")
+        @helper.inputDate(dealForm("endDate"),'_label->"Validade da Oferta",'class ->"form-control",
+            '_showConstraints -> false, 'required -> "true")
+        @select(dealForm("typeDeal"),options(TypeDeal.options()),'_label->"Tipo",'class ->"form-control",
+            '_showConstraints -> false, 'required -> "true")
+
+        <button class="btn btn-success" type="submit"> Salvar </button>
+        @helper.inputText(dealForm("id"),'_label->"",'style ->"display:none")
+        @helper.inputText(dealForm("url"),'_label->"",'style ->"display:none")
+        @helper.inputText(dealForm("totalSold"),'_label->"",'_info->"",'style ->"display:none")
+        @helper.inputDate(dealForm("createDate"),'_label->"",'class ->"form-control",'style ->"display:none",
+        '_showConstraints -> false)
+    }
+}
